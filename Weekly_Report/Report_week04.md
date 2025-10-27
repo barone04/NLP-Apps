@@ -1,6 +1,6 @@
 ---
 
-# Report_Week05 — Word Embedding and Visualization
+# Report_Week04 — Word Embedding and Visualization
 
 ## 🔹 1. Giải thích các bước thực hiện
 
