@@ -1,4 +1,4 @@
-# Report_Week05 — RNN For Pos Tagging
+# Report_Week05 — RNN For Pos Tagging.
 
 ## I. Giới thiệu và Phương pháp Triển khai
 
