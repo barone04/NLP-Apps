@@ -1,0 +1,10 @@
+[0m[[0m[31merror[0m] [0m[0m/home/tbao04/Pycharm/NLP&App/spark_labs/src/main/scala/com/baro/spark/Lab17_NLPPipeline.scala:10:33: object BreezeConversions is not a member of package org.apache.spark.ml.util[0m
+[0m[[0m[31merror[0m] [0m[0mimport org.apache.spark.ml.util.BreezeConversions._[0m
+[0m[[0m[31merror[0m] [0m[0m                                ^[0m
+[0m[[0m[31merror[0m] [0m[0m/home/tbao04/Pycharm/NLP&App/spark_labs/src/main/scala/com/baro/spark/Lab17_NLPPipeline.scala:137:25: method asBreeze in trait Vector cannot be accessed in org.apache.spark.ml.linalg.Vector[0m
+[0m[[0m[31merror[0m] [0m[0m      val breezeV1 = v1.asBreeze.asInstanceOf[BreezeVector[Double]][0m
+[0m[[0m[31merror[0m] [0m[0m                        ^[0m
+[0m[[0m[31merror[0m] [0m[0m/home/tbao04/Pycharm/NLP&App/spark_labs/src/main/scala/com/baro/spark/Lab17_NLPPipeline.scala:138:37: method asBreeze in trait Vector cannot be accessed in org.apache.spark.ml.linalg.Vector[0m
+[0m[[0m[31merror[0m] [0m[0m      val breezeQuery = queryVector.asBreeze.asInstanceOf[BreezeVector[Double]][0m
+[0m[[0m[31merror[0m] [0m[0m                                    ^[0m
+[0m[[0m[31merror[0m] [0m[0mthree errors found[0m

@@ -1,6 +1,5 @@
-# Báo Cáo Lab 5: Giới Thiệu PyTorch và Cơ Bản về Tensor & Autograd 📊
+# Report_Week05 — Pytorch Introduction
 
-Báo cáo này trình bày kết quả thực thi và phân tích các bài tập cơ bản trong PyTorch, bao gồm thao tác Tensor, tự động tính đạo hàm (Autograd) và xây dựng kiến trúc mạng nơ-ron đơn giản (`torch.nn`).
 
 ## I. Giải Thích Các Bước Triển Khai (Implementation Steps)
 
