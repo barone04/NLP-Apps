@@ -110,5 +110,18 @@ Doc 3: [0,0,1,1,0,1,1,1,1,1]
 
 ## 5. Nguồn tham khảo
 
--   lab1_tokenization.pdf
--   lab2_count_vectorization.pdf
+- Jurafsky, D., & Martin, J. H. (2023). Speech and Language Processing (3rd ed. draft).
+
+    Tham khảo Chương 2 (Regular Expressions, Text Normalization, Edit Distance) để hiểu sâu về quy trình chuẩn hóa văn bản và Tokenization.
+
+    Tham khảo Chương 6 (Vector Semantics) để nắm bắt lý thuyết về biểu diễn văn bản dạng vector.
+
+- Manning, C. D., Raghavan, P., & Schütze, H. (2008). Introduction to Information Retrieval. Cambridge University Press.
+
+    Tham khảo Chương 6 (Scoring, term weighting and the vector space model) để hiểu rõ mô hình Bag-of-Words và cách xây dựng ma trận Document-Term.
+
+- Scikit-learn Documentation. Feature extraction: Text features.
+
+    Tham khảo cách thiết kế lớp CountVectorizer trong thư viện Scikit-learn để mô phỏng lại giao diện (interface) và logic fit/transform trong bài thực hành này.
+
+    Link: https://scikit-learn.org/stable/modules/feature_extraction.html#text-feature-extraction
