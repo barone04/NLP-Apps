@@ -1,4 +1,4 @@
-# Report_Week01 — TOKENIZATION VÀ COUNT VECTORIZATION
+# Report_Week01 — TOKENIZATION VÀ COUNT VECTORIZATION.
 
 **Học phần:** Xử lý ngôn ngữ tự nhiên (NLP) **Bài thực hành:** Lab 1 & Lab 2
 
