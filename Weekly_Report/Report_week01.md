@@ -1,36 +1,114 @@
-Nhận xét
+# Report_Week01 — TOKENIZATION VÀ COUNT VECTORIZATION
 
-### Lab 1: Text Tokenization
+**Học phần:** Xử lý ngôn ngữ tự nhiên (NLP) **Bài thực hành:** Lab 1 & Lab 2
 
-- **Mục tiêu và triển khai**: Lab 1 tập trung vào việc triển khai hai bộ tách từ: `SimpleTokenizer` và `RegexTokenizer`.  
-  - `SimpleTokenizer`: chuyển văn bản thành chữ thường, tách dựa trên khoảng trắng và xử lý dấu câu cơ bản (., !, ?) bằng cách chèn khoảng trắng.  
-  - `RegexTokenizer`: sử dụng biểu thức chính quy (`\w+|[^\w\s]`) để tách từ chi tiết hơn, bao gồm dấu nháy và dấu gạch ngang.  
-  - Nhiệm vụ cuối cùng áp dụng cả hai trên mẫu UD_English-EWT.
-- **Điểm mạnh**: 
-  - `SimpleTokenizer` đơn giản, hiệu quả với văn bản cơ bản, dễ bảo trì.
-  - `RegexTokenizer` linh hoạt, xử lý tốt các trường hợp phức tạp như từ rút gọn (e.g., "isn't" → ["isn", "'", "t"]).
-  - Kết quả trên mẫu UD_English-EWT cho thấy khả năng áp dụng thực tế, đặc biệt khi so sánh hai cách tiếp cận.
-- **Hạn chế**: 
-  - `SimpleTokenizer` không xử lý tốt từ ghép không có khoảng trắng (e.g., "well-known") và tách dấu câu lặp thành nhiều token (e.g., "..." → [".", ".", "."]).
-  - `RegexTokenizer` có thể phân mảnh từ quá mức (e.g., "let's" → ["let", "'", "s"]), cần điều chỉnh tùy ngữ cảnh.
-  - Dữ liệu mock thay vì thực tế do không truy cập được file gốc, có thể ảnh hưởng đến độ chính xác.
-- **Khó khăn**: Lỗi `ModuleNotFoundError` do đường dẫn module sai (giải quyết bằng `sys.path.append`), và phụ thuộc vào mẫu dữ liệu giả lập.
+## 1. Các bước triển khai
 
----
+Dựa trên yêu cầu của Lab 1 và Lab 2, hệ thống đã được triển khai theo
+cấu trúc mô-đun với các bước cụ thể như sau:
 
-### Lab 2: Count Vectorization
+### Bước 1: Thiết lập cấu trúc và Interface (Giao diện)
 
-- **Mục tiêu và triển khai**: Lab 2 tập trung vào biểu diễn văn bản thành vector số bằng mô hình Bag-of-Words thông qua `CountVectorizer`.  
-  - Giao diện `Vectorizer` được định nghĩa với các phương thức `fit`, `transform`, và `fit_transform`.  
-  - `CountVectorizer` sử dụng tokenizer từ Lab 1 để xây dựng từ vựng và ma trận tần số, được kiểm tra trên một corpus mẫu.
-- **Điểm mạnh**: 
-  - `CountVectorizer` hoạt động tốt với tokenizer, tạo từ vựng sắp xếp và ma trận phản ánh tần suất từ chính xác (e.g., "love" xuất hiện 1 lần ở tài liệu 1, 2).
-  - Các bài kiểm tra đơn vị trong `test_lab02.py` (sau khi sửa) xác nhận chức năng đúng, như kiểm tra kích thước ma trận và tần suất từ.
-  - Tích hợp tốt với `RegexTokenizer`, xử lý dấu câu và từ phức tạp.
-- **Hạn chế**: 
-  - Chưa áp dụng trên UD_English-EWT thực tế do dữ liệu mock, dẫn đến từ vựng hạn chế.
-  - Thiếu các tính năng nâng cao như loại bỏ stop words hoặc giới hạn tần suất tối thiểu, cần bổ sung cho tập dữ liệu lớn.
-  - Ban đầu không có test, gây khó khăn trong việc xác nhận (đã sửa bằng cách thêm `test_*`).
-- **Khó khăn**: Lỗi `ModuleNotFoundError` tương tự Lab 1 (giải quyết bằng `sys.path.append`), và cần cấu hình test thủ công để PyTest nhận diện.
+Trước khi đi vào chi tiết thuật toán, tôi đã định nghĩa các lớp cơ sở
+trừu tượng (abstract base classes) để đảm bảo tính nhất quán.
 
----
+-   Tạo file `src/core/interfaces.py`.
+-   Định nghĩa lớp `Tokenizer` với phương thức trừu tượng
+    `tokenize(self, text: str) -> list[str]`.
+-   Định nghĩa lớp `Vectorizer` với các phương thức trừu tượng: `fit`,
+    `transform`, và `fit_transform`.
+
+### Bước 2: Triển khai Tokenization (Lab 1)
+
+Mục tiêu là chuyển đổi văn bản thô thành danh sách các tokens.
+
+-   **Simple Tokenizer**
+    -   Tạo file `src/preprocessing/simple_tokenizer.py`
+    -   Thực hiện: lowercase, split theo khoảng trắng và tách dấu câu cơ
+        bản.
+-   **Regex Tokenizer**
+    -   Tạo file `src/preprocessing/regex_tokenizer.py`
+    -   Sử dụng regex `\w+|[^\w\s]` để tách từ mạnh mẽ hơn.
+
+### Bước 3: Triển khai Count Vectorization (Lab 2)
+
+Mục tiêu là biểu diễn văn bản dưới dạng vector Bag-of-Words.
+
+-   Tạo file `src/representations/count_vectorizer.py`
+-   `CountVectorizer` nhận đối tượng `Tokenizer`.
+-   **fit**: xây vocabulary từ corpus.
+-   **transform**: chuyển văn bản thành vector đếm.
+
+## 2. Cách chạy code và log kết quả
+
+### 2.1 Kiểm thử Lab 1
+
+``` bash
+python main.py
+```
+
+**Log mô phỏng:**
+
+``` text
+--- Testing Tokenizers ---
+Input: "Hello, world! This is a test."
+
+[SimpleTokenizer Output]:
+['hello', ',', 'world', '!', 'this', 'is', 'a', 'test', '.']
+
+[RegexTokenizer Output]:
+['hello', ',', 'world', '!', 'this', 'is', 'a', 'test', '.']
+
+Input: "NLP is fascinating... isn't it?"
+[SimpleTokenizer Output]:
+['nlp', 'is', 'fascinating', '.', '.', '.', "isn't", 'it', '?']
+
+[RegexTokenizer Output]:
+['nlp', 'is', 'fascinating', '.', '.', '.', 'isn', "'", 't', 'it', '?']
+```
+
+### 2.2 Kiểm thử Lab 2
+
+Test file: `test/lab2_test.py`
+
+**Corpus mẫu:**
+
+``` python
+corpus = [
+    "I love NLP.",
+    "I love programming.",
+    "NLP is a subfield of AI."
+]
+```
+
+**Log mô phỏng:**
+
+``` text
+--- Testing CountVectorizer ---
+Using Tokenizer: RegexTokenizer
+
+1. Learned Vocabulary:
+i, love, nlp, ., programming, is, a, subfield, of, ai
+
+2. Document-Term Matrix:
+Doc 1: [1,1,1,1,0,0,0,0,0,0]
+Doc 2: [1,1,0,1,1,0,0,0,0,0]
+Doc 3: [0,0,1,1,0,1,1,1,1,1]
+```
+
+## 3. Giải thích kết quả
+
+-   SimpleTokenizer hoạt động tốt nhưng kém trong trường hợp phức tạp.
+-   RegexTokenizer tách từ chi tiết hơn.
+-   BOW tạo vector thưa, mất thứ tự từ.
+
+## 4. Khó khăn và cách giải quyết
+
+1.  **Tách dấu câu:** thêm khoảng trắng hoặc xử lý thủ công.
+2.  **Thứ tự vocabulary thay đổi:** sort token.
+3.  **Token OOV:** bỏ qua khi transform.
+
+## 5. Nguồn tham khảo
+
+-   lab1_tokenization.pdf
+-   lab2_count_vectorization.pdf
