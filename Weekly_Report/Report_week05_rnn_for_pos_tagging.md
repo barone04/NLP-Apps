@@ -1,8 +1,8 @@
-# Report_Week05 — RNN For Pos Tagging.
+# Report_Week05 — RNN For Pos Tagging
 
 ## I. Giới thiệu và Phương pháp Triển khai
 
-Bài lab này nhằm mục đích xây dựng một mô hình Mạng Nơ-ron Hồi quy Đơn giản (Simple Recurrent Neural Network - RNN) sử dụng PyTorch để thực hiện nhiệm vụ Gán nhãn Từ loại (UPOS Tagging) trên tập dữ liệu UD English-EWT.
+File notebook của lab này được đặt ở thư mục `/notebook/lab5_rnn_for_pos_tagging.ipynb`. Nhằm mục đích xây dựng một mô hình Mạng Nơ-ron Hồi quy Đơn giản (Simple Recurrent Neural Network - RNN) sử dụng PyTorch để thực hiện nhiệm vụ Gán nhãn Từ loại (UPOS Tagging) trên tập dữ liệu UD English-EWT.
 
 ### 1. Nêu rõ các bước triển khai chi tiết
 

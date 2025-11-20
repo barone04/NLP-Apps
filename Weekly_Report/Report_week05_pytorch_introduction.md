@@ -3,7 +3,7 @@
 
 ## I. Giải Thích Các Bước Triển Khai (Implementation Steps)
 
-Các bước triển khai được thực hiện thông qua file `lab5-pytorch-introduction.ipynb`, tập trung vào các khái niệm cốt lõi của PyTorch.
+File notebook của lab này được đặt ở thư mục `/notebook/lab5-pytorch-introduction.ipynb`, tập trung vào các khái niệm cốt lõi của PyTorch.
 
 ### 1. Phần 1: Thao tác cơ bản với Tensor
 

@@ -3,7 +3,7 @@
 
 ## 1) Mục tiêu & Tổng quan
 
-Mục tiêu của lab là xây dựng và so sánh 4 pipeline phân loại ý định (intent) trên bộ dữ liệu HWU:
+File notebook của lab này được đặt ở thư mục `/notebook/lab5_rnns_text_classification.ipynb`. Mục tiêu của lab là xây dựng và so sánh 4 pipeline phân loại ý định (intent) trên bộ dữ liệu HWU:
 
 1) **TF-IDF + Logistic Regression** (baseline cổ điển)  
 2) **Word2Vec (trung bình) + Dense** (baseline dùng embedding tĩnh)  
