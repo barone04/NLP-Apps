@@ -63,8 +63,8 @@ Mô hình được huấn luyện trong 10 Epoch. Log kết quả hiệu suất 
 ## III. KẾT QUẢ THỰC HIỆN
 
 Mục	Giá trị
-Độ chính xác trên tập dev:	0.865
-Ví dụ dự đoán câu mới:	
+- Độ chính xác trên tập dev:	0.865
+- Ví dụ dự đoán câu mới:	
 – Câu: “I love NLP”	– Dự đoán: [('i', 'PRON'), ('love', 'VERB'), ('nlp', 'NOUN')]
 
 ---
