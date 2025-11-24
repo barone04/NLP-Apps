@@ -3,7 +3,7 @@
 
 ## 1. Các bước triển khai
 
-Hệ thống được xây dựng theo quy trình 5 bước chuẩn của bài toán Sequence Labeling sử dụng PyTorch:
+Chương trình của bài lab này được đặt tại thư mục `lab5_rnn_for_ner.ipynb` .Hệ thống được xây dựng theo quy trình 5 bước chuẩn của bài toán Sequence Labeling sử dụng PyTorch:
 
 1.  **Tải và Tiền xử lý dữ liệu:**
 

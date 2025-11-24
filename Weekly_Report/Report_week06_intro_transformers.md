@@ -3,7 +3,7 @@
 
 ## 1. Các bước triển khai và Ghi log kết quả
 
-Để thực hiện bài lab này, môi trường Google Colab/Local đã được cài đặt
+Chương trình của bài lab này được đặt tại thư mục `/notebook/lab6_intro_transformers.ipynb`. Để thực hiện bài lab này, môi trường Google Colab/Local đã được cài đặt
 các thư viện cần thiết:
 
 ``` bash
