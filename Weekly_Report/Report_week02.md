@@ -1,5 +1,17 @@
 # Report_Week02 — NLP Pipeline với Spark
 
+## Các source code mà bài lab dùng:
+
+| STT | Loại File/Đường dẫn      | Đường dẫn (Path)                                        | Mục đích |
+|-----|---------------------------|----------------------------------------------------------|----------|
+| 1   | File Mã nguồn Chính       | src/main/scala/com/baro/spark/Lab17_NLPPipeline.scala    | Chứa toàn bộ logic khởi tạo Spark, định nghĩa và huấn luyện Pipeline ML (Tokenizer, StopWordsRemover, HashingTF, IDF, Normalizer). |
+| 2   | Thư mục Dự án             | NLP&Apps/spark_labs/                                     | Thư mục gốc chứa mã nguồn của bài Lab Spark. |
+| 3   | File Dữ liệu Đầu vào      | NLP&Apps/data/c4-train.00000-of-01024.json.gz            | Dữ liệu thô (tập con của bộ C4) được đọc vào Spark DataFrame. |
+| 4   | File Log Hiệu năng        | NLP&Apps/log/lab17_metrics.log                           | Ghi lại các chỉ số hiệu năng như thời gian đọc, huấn luyện, transform và kích thước từ vựng. |
+| 5   | File Kết quả Đầu ra       | NLP&Apps/results/lab17_pipeline_output.txt               | Ghi lại kết quả của các bản ghi sau khi đã được transform thành vector TF-IDF. |
+
+---
+
 ## 1. Các bước triển khai
 
 Quy trình triển khai được thực hiện như sau:

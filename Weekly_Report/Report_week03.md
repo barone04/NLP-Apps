@@ -1,6 +1,18 @@
----
-
 # Report_Week03 — Word Embedding and Visualization
+
+## Các source code mà bài lab dùng:
+
+| STT | Loại File/Đường dẫn            | Đường dẫn (Path)                                 | Mục đích |
+|-----|--------------------------------|--------------------------------------------------|----------|
+| 1   | Lớp chính (Implement)          | src/representations/word_embedder.py            | Cài đặt lớp WordEmbedder để xử lý các thao tác với Word Embedding (lấy vector, similarity, most similar, embed document). |
+| 2   | File Kiểm thử Pre-trained      | test/test_lab04.py                               | Chạy thực nghiệm với các mô hình Embedding đã huấn luyện sẵn (pre-trained model), ví dụ GloVe. |
+| 3   | File Huấn luyện Tự động        | test/lab4_embedding_training_demo.py             | Huấn luyện mô hình Word2Vec từ đầu bằng thư viện gensim. |
+| 4   | File Huấn luyện Spark          | test/spark_word2vec_demo.py                      | Huấn luyện mô hình Word2Vec sử dụng PySpark MLlib. |
+| 5   | File Trực quan hóa             | test/lab4_embedding_visualization.py             | Giảm chiều (PCA/t-SNE) và vẽ biểu đồ scatter plot để trực quan hóa không gian Embedding. |
+| 6   | File Dữ liệu Đầu vào           | data/UD_English-EWT/en_ewt-ud-train.txt          | Dữ liệu văn bản thô được sử dụng để tự huấn luyện mô hình Word2Vec. |
+| 7   | File Mô hình Lưu               | results/word2vec_ewt.model                       | Nơi lưu trữ mô hình Word2Vec sau khi tự huấn luyện. |
+
+---
 
 ## 🔹 1. Giải thích các bước thực hiện
 

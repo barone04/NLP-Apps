@@ -2,6 +2,19 @@
 
 **Học phần:** Xử lý ngôn ngữ tự nhiên (NLP) **Bài thực hành:** Lab 1 & Lab 2
 
+## Các source code mà bài lab dùng:
+
+| STT | Tên File / Đường dẫn                    | Mục đích                                                                   |
+|-----|------------------------------------------|-----------------------------------------------------------------------------|
+| 1   | src/core/interfaces.py                   | Định nghĩa các lớp trừu tượng (Abstract Base Classes) cho Tokenizer và Vectorizer. |
+| 2   | src/preprocessing/simple_tokenizer.py    | Triển khai lớp SimpleTokenizer cho Lab 1.                                   |
+| 3   | src/preprocessing/regex_tokenizer.py     | Triển khai lớp RegexTokenizer (Task 2 Lab 1).                               |
+| 4   | src/representations/count_vectorizer.py  | Triển khai lớp CountVectorizer cho Lab 2.                                   |
+| 5   | main.py                                  | File chính ở thư mục gốc, dùng để kiểm thử SimpleTokenizer và RegexTokenizer (Lab 1). |
+| 6   | test/lab2_test.py                        | File kiểm thử dành riêng cho CountVectorizer (Lab 2).                       |
+
+---
+
 ## 1. Các bước triển khai
 
 Dựa trên yêu cầu của Lab 1 và Lab 2, hệ thống đã được triển khai theo
