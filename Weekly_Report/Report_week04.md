@@ -1,145 +1,114 @@
----
-
-# Report_Week04 — Word Embedding and Visualization
-
-## 🔹 1. Giải thích các bước thực hiện
-
-Bài tập tuần 05 tập trung vào **biểu diễn từ (Word Embedding)**, bao gồm việc sử dụng mô hình **pre-trained**, **tự huấn luyện Word2Vec**, và **trực quan hóa embedding space**.
-
-### Các bước thực hiện:
-
-1. **Cài đặt lớp `WordEmbedder`**
-
-   * File: `src/representations/word_embedder.py`
-   * Dùng `gensim.downloader.load(model_name)` để tải mô hình pre-trained, ví dụ `glove-wiki-gigaword-50`.
-   * Cung cấp các phương thức:
-
-     * `get_vector(word)`: Lấy vector của từ.
-     * `get_similarity(word1, word2)`: Tính độ tương đồng cosine giữa hai từ.
-     * `get_most_similar(word, top_n)`: Trả về danh sách các từ gần nghĩa nhất.
-     * `embed_document(document)`: Biểu diễn toàn bộ văn bản bằng trung bình vector các từ trong câu (bỏ qua OOV).
-
-2. **Thực nghiệm với pre-trained model**
-
-   * File test: `test/test_lab04.py`
-   * Các thao tác:
-
-     * Lấy vector của từ “king”.
-     * Tính similarity giữa “king–queen”, “king–man”.
-     * Tìm 10 từ gần nghĩa nhất với “computer”.
-     * Biểu diễn câu “The queen rules the country.”
-
-3. **Huấn luyện mô hình Word2Vec từ đầu**
-
-   * File: `test/lab4_embedding_training_demo.py`
-   * Dữ liệu: `data/UD_English-EWT/en_ewt-ud-train.txt`
-   * Mô hình huấn luyện được lưu tại: `results/word2vec_ewt.model`
-
-4. **Trực quan hóa Embedding**
-
-   * File: `test/lab4_embedding_visualization.py`
-   * Giảm chiều bằng **PCA** hoặc **t-SNE**.
-   * Vẽ biểu đồ scatter plot các từ như:
-     `["king", "queen", "man", "woman", "car", "truck", "fruit", "apple", "dog", "cat", ...]`
+# Report_Week04 — Text Classification
 
 ---
 
-## 🔹 2. Hướng dẫn chạy code
+## I. Chi Tiết Triển Khai
 
-### Chạy thực nghiệm với mô hình pre-trained
+### 1. Task 1 & 2: Scikit-learn TextClassifier và Test Case
+
+Đã xây dựng một pipeline phân loại văn bản module trong Python/Scikit-learn để đảm bảo tính linh hoạt và dễ kiểm thử.
+
+| **Module** | **Tệp** | **Chức năng Đã Triển khai** |
+|-------------|----------|------------------------------|
+| `TextClassifier` | `src/models/text_classifier.py` | Bao bọc mô hình `LogisticRegression` của Scikit-learn. Phương thức `fit` gọi `vectorizer.fit_transform` và huấn luyện mô hình. `predict` và `evaluate` thực hiện các chức năng tương ứng. |
+| `Test Case` | `test/lab5_test.py` | Tạo bộ dữ liệu thử nghiệm nhỏ, sử dụng `RegexTokenizer` và `CountVectorizer` để trích xuất đặc trưng, huấn luyện `TextClassifier`, và in ra kết quả dự đoán cùng với các chỉ số đánh giá. |
+
+---
+
+### 2. Task 3: Chạy Ví dụ Spark ML (Baseline)
+
+Script `test/lab5_spark_sentiment_analysis.py` đã được chạy thành công, thiết lập một **Spark ML Pipeline** cho phân tích cảm xúc trên dữ liệu `data/sentiments.csv`.
+
+| **Thành phần Pipeline** | **Vai trò** |
+|--------------------------|-------------|
+| `Tokenizer`, `StopWordsRemover` | Tiền xử lý văn bản thô. |
+| `HashingTF`, `IDF` | Chuyển đổi văn bản thành các vector đặc trưng tần suất từ (TF-IDF). |
+| `LogisticRegression` | Mô hình phân loại cơ sở (Baseline). |
+
+---
+
+### 3. Task 4: Thử nghiệm Cải thiện Mô hình
+
+Chúng tôi đã thực hiện chiến lược thay thế kiến trúc mô hình để cải thiện hiệu suất:
+
+- **Kỹ thuật Áp dụng:** Thay thế mô hình `LogisticRegression` bằng mô hình **NaiveBayes (Multinomial Naive Bayes)** trong Spark ML Pipeline.  
+- **Tệp Kiểm thử:** Tạo `test/lab5_improvement_test.py` để chạy và so sánh hiệu suất của mô hình **Naive Bayes** với cùng một pipeline tiền xử lý TF-IDF.
+
+---
+
+## II. Báo Cáo và Phân Tích (Part 2: Report and Analysis - 50%)
+
+### 1. Hướng Dẫn Thực Thi Mã (Code Execution Guide)
+
+Để tái hiện các kết quả, vui lòng chạy các script sau từ **thư mục gốc của dự án**:
+
+#### 🔹 Kiểm thử Module (Scikit-learn)
 
 ```bash
-python -m test.test_lab04
+python test/lab5_test.py
 ```
 
-### Huấn luyện Word2Vec từ đầu
+#### 🔹 Baseline (Spark ML)
 
 ```bash
-python test/lab4_embedding_training_demo.py
+python test/lab5_spark_sentiment_analysis.py
 ```
 
-### Huấn luyện bằng pyspark
+#### 🔹 Cải thiện (Spark ML)
 
 ```bash
-python test/spark_word2vec_demo.py
-```
-
-### Trực quan hóa embedding
-
-```bash
-python test/lab4_embedding_visualization.py
+python test/lab5_improvement_test.py
 ```
 
 ---
 
-## 🔹 3. Phân tích kết quả
+### 2. Phân Tích Kết quả
 
-- Kết quả:
-![Query Document](../image/Result_task1_2.png)
-![Result Documents](../image/Result_task3.png)
-![Result Documents](../image/Result_task4.png)
+Chúng tôi sử dụng một tập dữ liệu nhỏ (~100 mẫu) với nhãn `−1` và `1` cho thử nghiệm Spark.
 
-### a. Độ tương đồng và từ đồng nghĩa tìm được
+#### 2.1. Báo cáo Hiệu suất Mô hình
 
-* `Similarity(king, queen)` ≈ **0.78** → cao, vì hai từ có quan hệ ngữ nghĩa mạnh (nam–nữ hoàng).
-* `Similarity(king, man)` ≈ **0.53** → thấp hơn, vì “man” chỉ là giống loài, không phải vai trò hoàng gia.
-* Top từ gần nghĩa với “computer”:
+| **Mô hình** | **Cơ sở Dữ liệu** | **Độ chính xác (Accuracy)** | **F1-Score** |
+|--------------|-------------------|-----------------------------|--------------|
+| Baseline (Logistic Regression) | Spark ML / TF-IDF | 41.67 %                     | 0.3259       |
+| Cải thiện (Naive Bayes) | Spark ML / TF-IDF | 44.58 %                     | 0.3123       |
 
-  ```
-  computers, software, technology, electronic, internet, digital, ...
-  ```
 
-  → cho thấy model học được các mối liên hệ ngữ nghĩa đúng như kỳ vọng.
-
-### b. Phân tích biểu đồ trực quan hóa
-
-- Kết quả:
-![Query Document](../image/PCA_visual.png)
-![Result Documents](../image/TSNE_visual.png)
-
-Khi giảm chiều xuống 2D bằng **PCA** hoặc **t-SNE**:
-
-* Các nhóm từ cùng chủ đề (ví dụ: *king, queen, prince, princess*) nằm gần nhau.
-* Nhóm *car, truck, vehicle* cũng tạo thành cụm riêng biệt.
-* Một vài cụm từ thú vị:
-
-  * *dog* và *cat* nằm gần nhau → đúng vì cùng loại “animal”.
-  * *apple, banana, fruit* cũng gần nhau → phản ánh quan hệ siêu-phụ (hypernym).
-
-Điều này chứng minh rằng mô hình embedding đã **học được quan hệ ngữ nghĩa và ngữ cảnh giữa các từ**.
 
 ---
 
-## 🔹 4. So sánh giữa mô hình pre-trained và mô hình tự huấn luyện
+#### 2.2. So sánh và Phân tích
 
-| Tiêu chí             | Pre-trained (GloVe)        | Word2Vec tự huấn luyện               |
-| -------------------- | -------------------------- | ------------------------------------ |
-| Dữ liệu              | Wikipedia + Gigaword       | UD_English-EWT (nhỏ hơn nhiều)       |
-| Kết quả similarity   | Ổn định, chính xác         | Dao động, ít ổn định                 |
-| Cụm từ trực quan hóa | Rõ ràng, phân tách tốt     | Mờ hơn, do ít dữ liệu                |
-| Ưu điểm              | Dễ dùng, chính xác cao     | Linh hoạt, phù hợp domain riêng      |
-| Nhược điểm           | Cồng kềnh, không tùy chỉnh | Cần nhiều dữ liệu và thời gian train |
+Mô hình **Naive Bayes** đã cho thấy sự cải thiện nhẹ về cả **Độ chính xác** và **F1-Score** so với **Logistic Regression** trên tập dữ liệu này.
 
-→ Kết luận: **Pre-trained model cho kết quả tốt hơn**, nhưng **model tự train** hữu ích khi muốn embedding chuyên biệt cho một lĩnh vực cụ thể (như y học, tài chính, mạng xã hội...).
+- **Lý do Naive Bayes Hiệu quả:**  
+  Naive Bayes, đặc biệt là phiên bản *Multinomial*, hoạt động rất tốt với các đặc trưng tần suất thưa thớt (*sparse frequency features*) như TF-IDF.  
+  Giả định độc lập giữa các từ của nó thường hoạt động như một cơ chế **chuẩn hóa hiệu quả** (*effective regularization*) trong phân loại văn bản,
+  giúp mô hình tổng quát hóa tốt hơn và tránh bị quá khớp hơn so với mô hình tuyến tính Logistic Regression khi dữ liệu thưa thớt hoặc bộ dữ liệu có kích thước hạn chế.
 
----
-
-## 🔹 5. Khó khăn và giải pháp
-
-| Khó khăn                                                       | Giải pháp                                                |
-| -------------------------------------------------------------- |----------------------------------------------------------|
-| Lỗi “ModuleNotFoundError: No module named 'src'” khi chạy test | Chạy từ thư mục gốc: `python -m test.test_lab04`         |
-| Lỗi import `RegexTokenizer` trong class `WordEmbedder`         | Sửa thuộc tính thành `self.tokenizer = RegexTokenizer()` |
-| Visualization t-SNE chậm                                       | Dùng PCA để thử nhanh trước, sau đó mới chạy t-SNE       |
+- **Kết luận:**  
+  Việc thay thế mô hình là một **kỹ thuật cải tiến thành công**, cung cấp hiệu suất tốt hơn với chi phí tính toán tương đương.
 
 ---
 
-## 🔹 6. Tài liệu tham khảo
+### 3. Thách Thức và Giải Pháp
 
-* [Gensim Documentation – Word Embeddings](https://radimrehurek.com/gensim/models/keyedvectors.html)
-* [Stanford GloVe Pretrained Models](https://nlp.stanford.edu/projects/glove/)
-* [Universal Dependencies – English EWT Corpus](https://universaldependencies.org/treebanks/en_ewt/)
-* [Scikit-learn: PCA and t-SNE](https://scikit-learn.org/stable/modules/manifold.html)
-* [PySpark MLlib Word2Vec](https://spark.apache.org/docs/latest/ml-features.html#word2vec)
+| **Thách thức** | **Giải pháp** |
+|-----------------|----------------|
+| Quá khớp (*Overfitting*) trên dữ liệu nhỏ | **Chiến lược Chuẩn hóa:** Cấu hình `LogisticRegression` với `regParam=0.001` và `NaiveBayes` với `smoothing=1.0` để kiểm soát độ phức tạp của mô hình. |
+| Cấu hình Đường dẫn Module | Sử dụng `sys.path.insert(0, ...)` trong các tệp kiểm thử Scikit-learn để thêm thư mục gốc dự án, đảm bảo việc import các module từ thư mục `src` hoạt động chính xác. |
+| Chuẩn hóa Nhãn Dữ liệu Spark | Đảm bảo chuyển đổi nhãn `−1/1` thành nhãn `0/1` chính xác bằng công thức:  
+  ```python
+  (col("sentiment").cast("integer") + 1) / 2
+  ```  
+  để phù hợp với yêu cầu của các thuật toán phân loại Spark ML. |
+
+---
+
+### 4. Tài Liệu Tham Khảo
+
+- [Apache Spark ML Documentation](https://spark.apache.org/docs/latest/ml-guide.html): Tài liệu chính thức về các thuật toán và pipeline components.  
+- [scikit-learn Documentation](https://scikit-learn.org/stable/): Hướng dẫn về `LogisticRegression` và `sklearn.metrics`.  
+- **Tài liệu Lớp học / Giảng viên:** Các tài liệu và hướng dẫn về cấu trúc dự án module.
 
 ---

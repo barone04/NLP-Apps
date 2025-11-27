@@ -1,4 +1,4 @@
-# Report_Week02_03 — NLP Pipeline với Spark
+# Report_Week02 — NLP Pipeline với Spark
 
 ## 1. Các bước triển khai
 
