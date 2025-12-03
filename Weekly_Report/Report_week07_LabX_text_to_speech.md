@@ -1,4 +1,4 @@
-# # Report_Week07 — Lab X: TỔNG QUAN VỀ CÔNG NGHỆ TỔNG HỢP TIẾNG NÓI (TEXT-TO-SPEECH)
+# Report_Week07 — Lab X: TỔNG QUAN VỀ CÔNG NGHỆ TỔNG HỢP TIẾNG NÓI (TEXT-TO-SPEECH)
 
 **Môn học:** [Natural Language Processing and Applications]  
 **Tuần:** 12 - Nội dung bổ sung: Kỹ năng tự nghiên cứu  
