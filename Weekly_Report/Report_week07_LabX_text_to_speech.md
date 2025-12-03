@@ -2,7 +2,7 @@
 
 **Môn học:** [Natural Language Processing and Applications]  
 **Tuần:** 12 - Nội dung bổ sung: Kỹ năng tự nghiên cứu  
-**Sinh viên thực hiện:** [Phan Đinh Thái Bảo]  
+**Sinh viên thực hiện:** Phan Đinh Thái Bảo
 
 ---
 
