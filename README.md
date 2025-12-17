@@ -47,7 +47,7 @@ Dự án này được thiết kế theo lộ trình từ cơ bản đến nâng
 
 -----
 
-## Bắt đầu (Getting Started)
+## Bắt đầu 
 
 Để chạy được mã nguồn trong repo này, hãy làm theo các bước sau.
 
@@ -72,7 +72,7 @@ cd NLP-Apps
 pip install -r requirements.txt
 ```
 
-**Bước 3: Tải các mô hình ngôn ngữ cần thiết (spaCy)**
+**Bước 3: Tải các mô hình ngôn ngữ cần thiết**
 Một số bài lab yêu cầu mô hình có sẵn của spaCy:
 
 ```bash
@@ -81,9 +81,9 @@ python -m spacy download en_core_web_sm
 
 -----
 
-## Hướng dẫn Chạy (Usage)
+## Hướng dẫn Chạy
 
-### Chạy các bài Lab Python (Deep Learning/Cơ bản)
+### Chạy các bài Lab Python
 
 Bạn có hai cách để chạy mã nguồn Python:
 
@@ -122,7 +122,7 @@ Các bài lab này nằm trong thư mục `spark_labs/` và được cấu trúc
 
 -----
 
-## 📚 Tài nguyên tham khảo (Resources)
+## Tài nguyên tham khảo 
 
 Dưới đây là các tài liệu và khóa học bổ trợ cho nội dung trong repo này:
 
