@@ -149,7 +149,7 @@ Dưới đây là các tài liệu và khóa học bổ trợ cho nội dung tro
 
   * **GitHub:** [barone04](https://www.google.com/search?q=https://github.com/barone04)
   * **Môn học:** NLP & Applications
-  * **Trường:** [Tên trường của bạn - Tùy chọn]
+  * **Trường:** Hanoi University of Science
 
 -----
 
